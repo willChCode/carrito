@@ -65,10 +65,26 @@ export function CartProvider({ children }) {
     }
   };
 
+  //eliminar encontrando por id
+  const deleteCartById = product => {
+    const newCart = cart.items.filter(item => item.id !== product.id);
+    const totalQuantity = newCart.reduce(
+      (acc, item) => acc + parseInt(item.quantity),
+      0
+    );
+    const updateCart = {
+      items: newCart,
+      totalQuantity: totalQuantity
+    };
+
+    setCart(updateCart);
+  };
+
   const clearCart = () => setCart({ items: [], totalQuantity: 0 });
 
   return (
-    <cartContext.Provider value={{ cart, addCart, clearCart, updateCart }}>
+    <cartContext.Provider
+      value={{ cart, addCart, clearCart, updateCart, deleteCartById }}>
       {children}
     </cartContext.Provider>
   );

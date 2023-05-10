@@ -4,7 +4,7 @@ import { HiOutlineXCircle } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
 function Cart() {
-  const { cart, updateCart } = useCart();
+  const { cart, updateCart, deleteCartById } = useCart();
   const { items } = cart;
   console.log(items);
 
@@ -77,7 +77,7 @@ function Cart() {
                     <td className='p-5 text-center'>
                       <button>
                         <HiOutlineXCircle
-                          onClick={() => {}}
+                          onClick={() => deleteCartById(item)}
                           className='h-5 w-5'></HiOutlineXCircle>
                       </button>
                     </td>
