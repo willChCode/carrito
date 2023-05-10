@@ -46,9 +46,10 @@ function Header() {
                 {/* {cart.items.reduce((acm, valor) => acm + valor.price)} */}
               </span>
               <div className='card-actions'>
-                <button className='btn btn-primary btn-md btn-block'>
-                  <Link to='/cart'>View cart</Link>
-                </button>
+                <Link className='btn btn-primary btn-md btn-block' to='/cart'>
+                  View cart
+                </Link>
+
                 <button
                   onClick={clearCart}
                   className='btn btn-secondary btn-md btn-block'>

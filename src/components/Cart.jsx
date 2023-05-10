@@ -18,7 +18,10 @@ function Cart() {
       </p>
       {items.length === 0 ? (
         <div>
-          Cart is empty. <Link to='/'>Go Shopping</Link>
+          Cart is empty.{' '}
+          <Link className='link link-primary' to='/'>
+            Go Shopping...
+          </Link>
         </div>
       ) : (
         <div className='grid md:grid-cols-4 md:gap-5'>
