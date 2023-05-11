@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 //contexto
 export const cartContext = createContext();
@@ -11,6 +12,24 @@ export function CartProvider({ children }) {
     items: [],
     totalQuantity: 0
   });
+
+  // useEffect(() => {
+  //   const cartCookie = Cookies.get('cart');
+  //   if (cartCookie) {
+  //     try {
+  //       const parsedCart = JSON.parse(cartCookie);
+  //       setCart(parsedCart);
+  //       console.log(parsedCart);
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   }
+  // }, []);
+
+  // // Guardar el carrito en las cookies cada vez que se actualiza
+  // useEffect(() => {
+  //   Cookies.set('cart', JSON.stringify(cart), { expires: 7 });
+  // }, [cart]);
 
   const addCart = product => {
     //check ifthe product is already in the cart

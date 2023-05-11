@@ -1,12 +1,14 @@
-import React, { useId } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { useFilter } from '../context/filterContext';
 import { BiSearch } from 'react-icons/bi';
+import { FaMicrophone } from 'react-icons/fa';
 
 function Filtrado() {
-  const { setFilters, filters } = useFilter();
-
+  const { setFilters, filters, handleStartRecording, isRecording } =
+    useFilter();
+  const inputRef = useRef(null);
   const [priceId, categoryId] = [useId(), useId()];
-  console.log(priceId, categoryId);
+  // console.log(priceId, categoryId);
 
   const handleChangePrice = e => {
     setFilters(prevState => ({
@@ -28,19 +30,30 @@ function Filtrado() {
     }));
   };
 
+  useEffect(() => {
+    if (filters.title) {
+      inputRef.current.value = filters.title;
+      // setTranscript(''); // se resetea la transcripción para permitir búsquedas múltiples
+    }
+  }, [filters.title]);
   return (
     <>
-      <form className='flex items-center justify-center mb-3'>
+      <form className='flex items-center justify-center mb-3 '>
+        <BiSearch size={20} className='mx-2' />
         <input
           onChange={handleChangeTitle}
-          type='text'
+          ref={inputRef}
+          type='search'
           placeholder='Search'
-          className='w-auto py-1 px-3 outline-none rounded-full border-[1px]'
+          className='w-auto py-1 px-3 outline-none border-x-[1px]'
         />
-        <button type='submit' className='btn btn-ghost btn-sm btn-circle'>
-          <BiSearch className='text-lg' />
-        </button>
+        <FaMicrophone
+          onClick={handleStartRecording}
+          size={20}
+          className={`mx-2 ${isRecording && 'text-sky-500'}`}
+        />
       </form>
+
       <div className='flex justify-around mb-6 mt-6 '>
         <div className=' flex gap-2 items-center'>
           <label className='font-bold' htmlFor={priceId}>

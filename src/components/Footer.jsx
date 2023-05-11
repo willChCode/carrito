@@ -8,8 +8,9 @@ function Footer() {
 
   return (
     <footer className='fixed left-[16px] bottom-[16px] text-left bg-neutral-600 py-2 px-6 rounded-lg opacity-95 backdrop-blur-sm text-white'>
+      <p className='text-center text-red-400 font-bold'>willCh 💤 Dev</p>
       {JSON.stringify(filters, null, 2)}
-      {/* <p>{JSON.stringify(cart, null, 2)}</p> */}
+      <p>cart: {cart ? 'cargo correctamente' : 'no cargo correctamente'}</p>
     </footer>
   );
 }
